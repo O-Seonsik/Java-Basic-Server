@@ -11,14 +11,10 @@ public class ServerInitializer {
 
         try {
             ServerSocket serverSocket = new ServerSocket(port);
-            Socket connection;
-            while(true) {
-                connection = serverSocket.accept();
-                InputStreamReader inputStreamReader = new InputStreamReader(connection.getInputStream());
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String line = bufferedReader.readLine();
+            Dispatcher dispatcher = new Dispatcher();
 
-                System.out.println("READ:" + line);
+            while(true) {
+                dispatcher.dispatch(serverSocket);
             }
         } catch (IOException e) {
             e.printStackTrace();

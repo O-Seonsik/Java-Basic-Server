@@ -15,6 +15,13 @@ public class TestClient {
             message = "0x5001|홍길동|22";
             out.write(message.getBytes());
             socket.close();
+
+
+            Socket socket2 = new Socket("127.0.0.1", 5000);
+            OutputStream out2 = socket2.getOutputStream();
+            message = "0x6001|hong|1234|홍길동|22|남성";
+            out2.write(message.getBytes());
+            socket2.close();
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e){
