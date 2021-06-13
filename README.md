@@ -1,24 +1,12 @@
 # Server architecture pattern
 
 ## 현재 상황
-결과를 클라이언트로 반환하지는 않지만 서버의 콘솔창에 출력하며 어느정도 서버의 형태를 가졌다.
+Dispatcher에서 Header 6bytes를 읽어들여 0x5001, 0x6001 2개의 프로토콜에 따라 각기 다른 역할을 수행한다.
 
-하지만 실제로는 한 서버가 여러가지의 일을 복합적으로 처리해야 하는 경우가 많다.
+Protocol을 새로 만들고 ex)0x7001을 추가하기 위해서는 Dispatcher(demultiplex)의 switch 구문에 case를 계속 추가해야 한다.
 
-로그 정보를 저장해야 하는데 로그 종류에 따라 DB에 넣거나 콘솔에 출력을 하거나 프린트를 하는 등 서버는 여러가지 상황에 대응이 쉬워야 한다.
+패턴을 활용해서 외부에 프로토콜을 정의한 파일을 통해 코드를 수정하지 않고 프로토콜을 추가하는 방법은 없을까?
 
-## 목표
-여러가지 방법으로 구분해서 데이터를 처리하기
-
-- 데이터 전송 방법을 정의한다.
-    - 0x5001|홍길동|22
-    - 헤더[6글자]
-        - 헤더에 따라서 데이터를 파싱할 방법이 정해
-    - 파이프(|)로 구분되는 데이터
-    
-      
-- Dispatcher(전달자)
-    - 데이터가 서버로 도달하면 Dispatcher에서 각 각의 프로토콜로 처리한다.
-    - 각 각의 프로토콜로 구분하는 방법은 Header를 활용한다.
-        - 0x5001 -> StreamSayHelloProtocol
-        - 0x6001 -> StreamUpdateProfileProtocol
+## Reactor Pattern
+- Handle Map
+- Eventhandler
