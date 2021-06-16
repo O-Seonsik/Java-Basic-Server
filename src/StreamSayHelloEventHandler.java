@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.StringTokenizer;
 
-public class StreamSayHelloEventHendler implements EventHandler{
+public class StreamSayHelloEventHandler implements EventHandler{
     //  Maximum body size is 512bytes;
     private static final int DATA_SIZE = 512;
     // Number of data is two;
