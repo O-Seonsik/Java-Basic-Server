@@ -2,11 +2,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.StringTokenizer;
 
-public class StreamSayHelloProtocol {
+public class StreamSayHelloEventHendler implements EventHandler{
     //  Maximum body size is 512bytes;
     private static final int DATA_SIZE = 512;
     // Number of data is two;
     private static final int TOKEN_NUM = 2;
+
+    @Override
+    public String getHandler() {
+        return "0x5001";
+    }
 
     // InputStream 데이터를 처리해줄 함수
     public void handleEvent(InputStream inputStream){

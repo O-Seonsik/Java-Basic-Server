@@ -2,11 +2,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.StringTokenizer;
 
-public class StreamUpdateProfileProtocol {
+public class StreamUpdateProfileEventHandler implements EventHandler {
     //  Maximum body size is 512bytes;
     private static final int DATA_SIZE = 1024;
     // Number of data is two;
     private static final int TOKEN_NUM = 5;
+
+    @Override
+    public String getHandler() {
+        return "0x6001";
+    }
 
     // InputStream 데이터를 처리해줄 함수
     public void handleEvent(InputStream inputStream){
